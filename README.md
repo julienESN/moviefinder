@@ -16,7 +16,7 @@ Tailwind CSS
 Accéder à l'application en ligne
 Pour utiliser l'application en ligne, visitez le lien suivant :
 
-https://vercel.com/julienesn/moviesearch/5xf2SndLo3uj5C1kVZ5XnGFFUBsN
+https://moviesearch-julienesn.vercel.app/
 
 Contribution
 Les contributions à ce projet sont les bienvenues ! Si vous souhaitez apporter des modifications ou des améliorations, n'hésitez pas à soumettre une pull request.
