@@ -8,6 +8,7 @@ interface MovieData {
   Type: string;
   imdbRating: string;
   Poster: string;
+  Genre: string;
 }
 
 const Body: React.FC = () => {
@@ -53,7 +54,7 @@ const Body: React.FC = () => {
                 >
                   {movie.Title}
                 </h3>
-                <p className="text-gray-600">{movie.Year}</p>
+                <p className="text-gray-600 mb-2">{movie.Year}</p>
                 <Image
                   src={movie.Poster}
                   alt={movie.Title}
@@ -67,6 +68,9 @@ const Body: React.FC = () => {
                       movie.Type.charAt(0).toUpperCase() +
                         movie.Type.slice(1)}{' '}
                     - {movie.Year}
+                  </p>
+                  <p className="text-white font-semibold text-md">
+                    {movie.Genre}
                   </p>
                   <div className="flex items-center">
                     <span className="text-white font-semibold text-lg">
