@@ -13,6 +13,9 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  if (!movie) {
+    return null;
+  }
   return (
     <div className="text-center mb-8 relative">
       <h3

@@ -12,6 +12,7 @@ interface MovieData {
   imdbRating: string;
   Poster: string;
   Genre: string;
+  Error?: string;
 }
 
 const Body: React.FC = () => {
