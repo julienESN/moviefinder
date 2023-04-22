@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   return (
     <header className="w-full flex flex-col items-center justify-center">
       <h1
-        className="text-8xl font-bold text-red-600 mb-4 "
+        className="text-8xl font-bold text-red-600 mb-4 text-center pb-8"
         style={{ fontFamily: 'Bebas Neue' }}
       >
         Movie finder
