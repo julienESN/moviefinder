@@ -20,3 +20,7 @@
 img:hover ~ .hover-info {
   opacity: 100;
 }
+
+.test {
+  margin-left: 50px;
+}
