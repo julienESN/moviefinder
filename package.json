@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^7.0.0",
+    "@types/zxcvbn": "^4.4.1",
     "next-images": "^1.8.4"
   }
 }
