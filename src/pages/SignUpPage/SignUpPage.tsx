@@ -20,7 +20,7 @@ import { auth } from '../api/auth/firebase';
 import { FirebaseError } from 'firebase/app';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import MovieSlider from './MovieSlider/MovieSlider';
 // Define constants at the top of your file
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z|a-z]{2,}$/i;
 const ERROR_MESSAGES = {
@@ -71,6 +71,7 @@ export default function SignInSide({
   // Define state variables using React.useState() hook
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [currentMovie, setCurrentMovie] = React.useState(null);
   const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState('');
   const [emailError, setEmailError] = React.useState(false); // Ajouté
@@ -387,16 +388,17 @@ export default function SignInSide({
           xs={12}
           sm={6}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            display: { xs: 'none', sm: 'block' },
+            backgroundImage: currentMovie
+              ? `url(https://image.tmdb.org/t/p/original${currentMovie.poster_path})`
+              : 'none',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light'
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-        />
+        >
+          <MovieSlider onMovieChange={setCurrentMovie} />
+        </Grid>
       </Grid>
     </ThemeProvider>
   );
