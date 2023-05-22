@@ -11,7 +11,7 @@ const Theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Poppins, sans-serif',
+    fontFamily: 'Prompt, sans-serif',
   },
 });
 
