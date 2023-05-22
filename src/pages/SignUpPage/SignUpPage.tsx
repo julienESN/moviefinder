@@ -395,6 +395,7 @@ export default function SignInSide({
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            transition: 'background-image 1s linear', // Add this line
           }}
         >
           <MovieSlider onMovieChange={setCurrentMovie} />

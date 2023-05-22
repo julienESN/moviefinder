@@ -46,6 +46,7 @@ export default function MovieSlider({ onMovieChange }) {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        transition: 'background-image 1s ease-in-out', // Add this line
       }}
     >
       <div
@@ -55,8 +56,8 @@ export default function MovieSlider({ onMovieChange }) {
           left: 0,
           height: '100%',
           width: '100%',
-          backgroundColor: 'rgba(6 10 6 / 50%)', // green tint
-          boxShadow: '0 10px 20px 0 rgba(0, 0, 0, 0.2)', // updated box shadow
+          backgroundColor: 'rgba(6 10 6 / 50%)',
+          boxShadow: '0 10px 20px 0 rgba(0, 0, 0, 0.2)',
         }}
       />
       {currentMovie && (
@@ -64,7 +65,7 @@ export default function MovieSlider({ onMovieChange }) {
           <div
             style={{
               position: 'absolute',
-              bottom: '25%', // Placing the text at 25% from the bottom
+              bottom: '25%',
               width: '100%',
               textAlign: 'center',
               color: 'white',
@@ -78,7 +79,7 @@ export default function MovieSlider({ onMovieChange }) {
           <div
             style={{
               position: 'absolute',
-              bottom: '20px', // Placing indicators below the text
+              bottom: '20px',
               width: '100%',
               textAlign: 'center',
               marginBottom: '10rem',
