@@ -3,9 +3,19 @@ import usePopularMovies from '../../api/usePopularMovies/usePopularMovies';
 import { useEffect, useState } from 'react';
 import MovieIndicator from './MovieIndicator/MovieIndicator'; // Importation du composant MovieIndicator
 import PresentationText from './PresentationText/PresentationText'; // Importation du composant PresentationText
-export default function MovieSlider({ onMovieChange }) {
+// Définition de l'interface Movie
+export interface Movie {
+  poster_path: string;
+  title: string;
+}
+
+export default function MovieSlider({
+  onMovieChange,
+}: {
+  onMovieChange: (movie: Movie | null) => void;
+}) {
   // Utilisation de notre hook personnalisé pour récupérer une liste de films populaires
-  const movies = usePopularMovies();
+  const movies: Movie[] = usePopularMovies();
   // Utilisation du hook useState pour stocker l'indice du film actuellement affiché
   const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
   // Textes de présentation affichés pour chaque film
@@ -28,7 +38,7 @@ export default function MovieSlider({ onMovieChange }) {
     return () => clearInterval(intervalId);
   }, [movies]);
   // Récupération du film actuel en se basant sur l'indice courant
-  const currentMovie =
+  const currentMovie: Movie | null =
     movies && movies.length > currentMovieIndex
       ? movies[currentMovieIndex]
       : null;
@@ -41,7 +51,10 @@ export default function MovieSlider({ onMovieChange }) {
     <div
       style={{
         position: 'relative',
-        backgroundImage: `url(${currentMovie?.poster_path})`,
+        backgroundImage: currentMovie
+          ? `url(https://image.tmdb.org/t/p/original${currentMovie.poster_path})`
+          : 'none',
+
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100%',

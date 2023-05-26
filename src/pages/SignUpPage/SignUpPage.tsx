@@ -14,13 +14,15 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import EmailField from './EmailField/EmailField';
 import PasswordField from './PasswordField/PasswordField';
 import SignInProviders from './SignInProviders/SignInProviders';
-import Theme from './Theme/Theme';
+import Theme from '../Theme/Theme';
 import zxcvbn from 'zxcvbn';
 import { auth } from '../api/auth/firebase';
 import { FirebaseError } from 'firebase/app';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import MovieSlider from './MovieSlider/MovieSlider';
+import { Movie } from './MovieSlider/MovieSlider';
+
 // Define constants at the top of your file
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z|a-z]{2,}$/i;
 const ERROR_MESSAGES = {
@@ -71,25 +73,26 @@ export default function SignInSide({
   // Define state variables using React.useState() hook
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [currentMovie, setCurrentMovie] = React.useState(null);
+  const [currentMovie, setCurrentMovie] = React.useState<Movie | null>(null);
   const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState('');
-  const [emailError, setEmailError] = React.useState(false); // Ajouté
-  const [passwordError, setPasswordError] = React.useState(false); // Ajouté
+  const [emailError, setEmailError] = React.useState(false);
+  const [passwordError, setPasswordError] = React.useState(false);
   const [passwordStrength, setPasswordStrength] = React.useState(0);
   const [errorAlert, setErrorAlert] = React.useState<{
     message: string;
     title: string;
   } | null>(null);
 
-  const [showProgressBar, setShowProgressBar] = React.useState(false); // Ajouté
-  // Event handler for password change event
+  const [showProgressBar, setShowProgressBar] = React.useState(false);
+
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     setPasswordStrength(getPasswordStrength(newPassword));
     setPasswordError(false);
-    setShowProgressBar(newPassword !== ''); // Ajouté
+    setShowProgressBar(newPassword !== '');
+    console.log('Show Progress Bar:', newPassword !== '');
   };
   // Determine the color of the password strength bar
   const passwordStrengthColor =
@@ -309,11 +312,11 @@ export default function SignInSide({
               </Typography>
               <PasswordField
                 password={password}
-                setPassword={handlePasswordChange}
                 showPassword={showPassword}
                 setShowPassword={handleClickShowPassword}
                 passwordError={passwordError}
                 setError={setError}
+                handlePasswordChange={handlePasswordChange} // pass the function here
               />
               {showProgressBar && (
                 <LinearProgress
@@ -389,9 +392,6 @@ export default function SignInSide({
           sm={6}
           sx={{
             display: { xs: 'none', sm: 'block' },
-            backgroundImage: currentMovie
-              ? `url(https://image.tmdb.org/t/p/original${currentMovie.poster_path})`
-              : 'none',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',

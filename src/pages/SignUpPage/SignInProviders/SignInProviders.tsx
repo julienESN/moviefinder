@@ -2,40 +2,26 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
-import Theme from '../Theme/Theme.ts';
+import Theme from '../../Theme/Theme';
+import { Box } from '@mui/system';
 
-const handleGoogleSignIn = async () => {
-  const provider = new GoogleAuthProvider();
+interface SignInProvidersProps {
+  handleGithubSignIn: () => void;
+  handleGoogleSignIn: () => void;
+}
 
-  try {
-    // Connectez-vous avec Google en utilisant Firebase Auth
-    await signInWithPopup(auth, provider);
-    // Redirigez vers la page protégée après une connexion réussie
-    window.location.href = '/protected';
-  } catch (error) {
-    // Définissez le message d'erreur s'il y a une erreur
-    setError((error as Error).message || 'An unknown error occurred.');
-  }
-};
-
-const handleGithubSignIn = async () => {
-  const provider = new GithubAuthProvider();
-
-  try {
-    // Connectez-vous avec Github en utilisant Firebase Auth
-    await signInWithPopup(auth, provider);
-    // Redirigez vers la page protégée après une connexion réussie
-    window.location.href = '/protected';
-  } catch (error) {
-    // Définissez le message d'erreur s'il y a une erreur
-    console.log(error);
-    setError((error as Error).message || 'Une erreur inconnue est survenue.');
-  }
-};
-
-function SignInProviders({ handleGithubSignIn, handleGoogleSignIn }) {
+function SignInProviders({
+  handleGithubSignIn,
+  handleGoogleSignIn,
+}: SignInProvidersProps) {
   return (
-    <>
+    <Box
+      display="flex"
+      width="100%"
+      flexWrap="wrap"
+      justifyContent={{ xs: 'center', md: 'space-between' }}
+      gap={2}
+    >
       <Button
         variant="outlined"
         startIcon={<AiFillGithub size={'40'} />}
@@ -43,11 +29,10 @@ function SignInProviders({ handleGithubSignIn, handleGoogleSignIn }) {
           flexGrow: 1,
           borderRadius: '25px 25px 25px 25px',
           borderColor: Theme.palette.grey[600],
-          width: '5rem',
+          width: { xs: '100%', md: 'auto' },
           height: '5rem',
           textTransform: 'none',
           color: Theme.palette.secondary.main,
-          mr: '100px',
         }}
         onClick={handleGithubSignIn}
       >
@@ -67,7 +52,7 @@ function SignInProviders({ handleGithubSignIn, handleGoogleSignIn }) {
           flexGrow: 1,
           borderRadius: '25px 25px 25px 25px',
           borderColor: Theme.palette.grey[600],
-          width: '5rem',
+          width: { xs: '100%', md: 'auto' },
           height: '5rem',
           textTransform: 'none',
           color: Theme.palette.secondary.main,
@@ -83,7 +68,7 @@ function SignInProviders({ handleGithubSignIn, handleGoogleSignIn }) {
           Google
         </span>
       </Button>
-    </>
+    </Box>
   );
 }
 

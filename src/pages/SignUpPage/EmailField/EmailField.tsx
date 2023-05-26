@@ -1,7 +1,9 @@
 // EmailField.tsx
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import FormHelperText from '@mui/material/FormHelperText'; // Ajouté
+import FormHelperText from '@mui/material/FormHelperText'; 
+import MailOutline from '@mui/icons-material/MailOutline';
+import InputAdornment from '@mui/material/InputAdornment';
 
 interface EmailFieldProps {
   email: string;
@@ -50,6 +52,13 @@ const EmailField: React.FC<EmailFieldProps> = ({
         autoComplete="email"
         autoFocus
         variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <MailOutline />
+            </InputAdornment>
+          ),
+        }}
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);

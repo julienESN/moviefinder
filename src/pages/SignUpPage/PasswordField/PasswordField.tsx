@@ -4,20 +4,21 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import FormHelperText from '@mui/material/FormHelperText'; // Ajouté
+import FormHelperText from '@mui/material/FormHelperText';
+import LockRounded from '@mui/icons-material/LockRounded';
 
 interface PasswordFieldProps {
   password: string;
-  setPassword: React.ChangeEventHandler<HTMLInputElement>;
+  handlePasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showPassword: boolean;
-  setShowPassword: () => void;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
   passwordError: boolean;
   setError: (value: string) => void;
 }
 
 const PasswordField: React.FC<PasswordFieldProps> = ({
   password,
-  setPassword,
+  handlePasswordChange,
   showPassword,
   setShowPassword,
   passwordError,
@@ -27,7 +28,6 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
     <>
       <TextField
         margin="normal"
-        borderRadius="20px"
         required
         fullWidth
         name="password"
@@ -37,17 +37,27 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
         autoComplete="current-password"
         variant="outlined"
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <LockRounded />
+            </InputAdornment>
+          ),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton edge="end" color="inherit" onClick={setShowPassword}>
-                {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+              <IconButton
+                edge="end"
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
               </IconButton>
             </InputAdornment>
           ),
         }}
         value={password}
-        onChange={setPassword}
+        onChange={handlePasswordChange}
         error={passwordError}
+        style={{ borderRadius: 20 }}
       />
       {passwordError && (
         <FormHelperText error={passwordError}>
