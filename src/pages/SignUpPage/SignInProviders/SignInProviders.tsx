@@ -34,7 +34,7 @@ function SignInProviders({
           textTransform: 'none',
           color: Theme.palette.secondary.main,
         }}
-        onClick={handleGithubSignIn}
+        onClick={handleGithubSignIn} // Ajout de l'appel à la fonction handleGithubSignIn
       >
         <span
           style={{
@@ -57,7 +57,7 @@ function SignInProviders({
           textTransform: 'none',
           color: Theme.palette.secondary.main,
         }}
-        onClick={handleGoogleSignIn}
+        onClick={handleGoogleSignIn} // Ajout de l'appel à la fonction handleGoogleSignIn
       >
         <span
           style={{
