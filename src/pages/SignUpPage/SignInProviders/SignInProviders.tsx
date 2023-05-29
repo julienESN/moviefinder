@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
-import Theme from '../../Theme/Theme';
+import Theme from '../../../../Theme/Theme';
 import { Box } from '@mui/system';
 
 interface SignInProvidersProps {

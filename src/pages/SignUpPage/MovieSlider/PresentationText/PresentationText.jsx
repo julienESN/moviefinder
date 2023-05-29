@@ -1,10 +1,14 @@
-import React from 'react';
-
 export default function PresentationText({
   currentMovie,
   currentMovieIndex,
   presentationTexts,
 }) {
+  // Vérifiez si currentMovie et presentationTexts existent avant d'utiliser leurs valeurs
+  const text =
+    currentMovie && presentationTexts && presentationTexts[currentMovieIndex]
+      ? presentationTexts[currentMovieIndex]
+      : '';
+
   return (
     <div
       style={{
@@ -18,7 +22,7 @@ export default function PresentationText({
         opacity: currentMovie ? 1 : 0,
       }}
     >
-      {presentationTexts[currentMovieIndex]}
+      {text}
     </div>
   );
 }

@@ -14,7 +14,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import EmailField from './EmailField/EmailField';
 import PasswordField from './PasswordField/PasswordField';
 import SignInProviders from './SignInProviders/SignInProviders';
-import Theme from '../Theme/Theme';
+import Theme from '../../../Theme/Theme';
 import zxcvbn from 'zxcvbn';
 import { auth } from '../api/auth/firebase';
 import { FirebaseError } from 'firebase/app';
@@ -160,8 +160,10 @@ export default function SignInSide({
       // Créez un nouvel utilisateur ou connectez-vous avec un courrier électronique et un mot de passe en utilisant Firebase Auth
       if (action === 'signup') {
         await createUserWithEmailAndPassword(auth, email, password);
+        setCookie('loggedIn', 'true');
       } else if (action === 'login') {
         await signInWithEmailAndPassword(auth, email, password);
+        setCookie('loggedIn', 'true');
       }
 
       // Redirigez vers la page protégée après une inscription réussie

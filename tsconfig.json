@@ -18,6 +18,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...nextauth].js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/api/auth/[...nextauth].js",
+    "Theme/Theme.jsx"
+, "src/pages/api/auth/register.js"  ],
   "exclude": ["node_modules"]
 }
